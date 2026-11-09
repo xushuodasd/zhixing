@@ -1,0 +1,45 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+sdist/
+wheels/
+*.egg-info/
+*.egg
+MANIFEST
+
+# Unit test / coverage / tooling caches
+.pytest_cache/
+.ruff_cache/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+
+# Environments
+.venv/
+venv/
+env/
+ENV/
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Project-specific
+.ai-team/
+docs/ai-team/
+data/
+
+# Transient pip / toolchain temp dirs (sandbox artifacts, not project files)
+tmp*/
+pip-build-env-*/
+pip-ephem-wheel-cache-*/
+.tmp-build/
+mode700/
