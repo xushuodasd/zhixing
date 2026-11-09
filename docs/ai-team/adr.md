@@ -22,3 +22,14 @@
 - 代价与影响：GitHub 公开仓库将包含治理档案（内部工作痕迹对外可见）；M4/S5 发布前须再决策公共仓库内容处理（候选方案：干净发布分支/压缩历史），到时需老板拍板。摘要每次更新需随治理提交入库。
 - 回滚：恢复 .gitignore 两行 + 移回摘要文件即可；无数据风险。
 - 集成环境限制备案：task-check.mjs 内部以管道方式调用 git，DSH 沙箱报告 EPERM（read-only 与 workspace-write 均拦），经用户批准后以 danger-full-access 单条命令运行通过；后续里程碑每次集成同样需要该提权。
+
+## ADR-003 M2 Agent 核心的架构与交付方式
+
+- 编号/版本/日期：ADR-003 / v1.0 / 2026-11-09；状态：已接受；决定者：Lead（老板常设授权）
+- 分层与模块：`core/`（types: Message/ToolCall/ToolResult；events: 全程事件与 TraceRecorder——"透"卖点的落点；exceptions）→ `tools/`（Tool 数据类 + @tool 装饰器 + ToolRegistry，执行错误捕获为带 is_error 的 ToolResult）→ `providers/`（Provider 协议 + OpenAICompatProvider（httpx，base_url 可配，国产模型兼容接口）+ FakeProvider（脚本化响应，离线测试/演示用））→ `agent.py`（Agent.run：规划-工具调用循环，max_iterations 护栏，事件回调）+ `memory/`（Memory 协议 + InMemoryMemory）。
+- 依赖决策：仅新增 httpx（>=0.27）；不引入 pydantic/langchain 等重依赖——"轻"是定位，stdlib dataclasses 优先。
+- 测试策略：全部单测离线（FakeProvider + httpx.MockTransport），真实 API 调用仅做演示不进测试；e2e 场景：直接回答/工具调用后回答/工具报错恢复/迭代上限/记忆跨轮。
+- 交付方式：3 个任务**串行**（TASK-002 基础层 → 003 Provider 层 → 004 Agent 循环与端到端），各自独立分支、独立门禁、非作者独立审查、Lead 唯一集成。放弃并行 worktree 的原因：工作区即仓库根，仓库内 worktree 违反门禁"零 ignored 文件"，仓库外（%TEMP%）worktree 使工具级写受限；串行单写者等效满足隔离目标，代价是工期略长。
+- 环境配方（已验证）：venv 建在 %TEMP%\zhixing-venv（仓库外）；构建需 sitecustomize shim（PYTHONPATH=%TEMP%\zhixing-build，备份已存）；pip 用 --no-build-isolation --no-cache-dir；pytest 加 -p no:cacheprovider、PYTHONDONTWRITEBYTECODE=1；日志落盘用 UTF-8（Out-File -Encoding utf8，吸取 M1 UTF-16 教训）。
+- 风险：真实 LLM 接口行为（tool_calls 格式细节）以 OpenAI 兼容文档为准，M2 只保接口映射正确，真实联调演示放 M3 前。
+
