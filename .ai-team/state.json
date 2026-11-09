@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 2,
+  "project": {
+    "name": "zhixing",
+    "root": "C:\\Users\\xushu\\Desktop\\test"
+  },
+  "stage": "S2",
+  "status": "active",
+  "requirements": [
+    {
+      "id": "REQ-001",
+      "acceptance": "M1 骨架：本地 main 分支含 MIT LICENSE、pyproject.toml（name=zhixing, py>=3.11）、.gitignore（含 .ai-team/ 与 docs/ai-team/ 排除）、src/zhixing 骨架（agent/tools/memory/providers 占位）、tests 冒烟测试；pytest 与 ruff 通过且证据存 .ai-team/evidence/；提交符合 Conventional Commits。",
+      "phase": "M1-一期"
+    },
+    {
+      "id": "REQ-002",
+      "acceptance": "M2 核心：Agent/Tool/Provider 抽象可用，示例脚本端到端跑通一次工具调用循环（provider 无关，默认 OpenAI 兼容接口），pytest 覆盖核心路径，无网络依赖的单元测试可离线通过。",
+      "phase": "M2-一期"
+    },
+    {
+      "id": "REQ-003",
+      "acceptance": "M3 门面：README 双语（中文为主）定位清晰、快速开始可复制运行、CONTRIBUTING/CODE_OF_CONDUCT 就位、examples 可运行。",
+      "phase": "M3-一期"
+    },
+    {
+      "id": "REQ-004",
+      "acceptance": "M4 发布：质量门禁全绿、项目名重名核验完成、获得老板明确授权后完成 GitHub 首次推送与 Release；无授权则停在 S4。",
+      "phase": "M4-一期"
+    }
+  ],
+  "approvals": [],
+  "evidence": [
+    {
+      "id": "EVD-001",
+      "stage": "S2",
+      "path": ".ai-team/evidence/EVD-001-repo-archive.txt",
+      "sha256": "2c221f267b93a5606514e6f21c0eee9a331199d4bc23f6f8061320dae1dab2c6",
+      "command": "git branch archive/stock-analysis-20261109 a07060a; git checkout --orphan zhixing-base; git rm -r --cached .; git commit --allow-empty; git branch -M main（详见证据文件）",
+      "result": "passed",
+      "exitCode": 0,
+      "at": "2026-11-09T18:05:00+08:00"
+    }
+  ],
+  "tasks": [
+    ".ai-team/tasks/TASK-001.json"
+  ],
+  "risks": [
+    {
+      "id": "RISK-001",
+      "description": "项目名 zhixing 在 GitHub/PyPI 可能重名，发布前需核验（M4）",
+      "severity": "低",
+      "owner": "Lead",
+      "status": "open"
+    },
+    {
+      "id": "RISK-002",
+      "description": "GitHub 推送/发布尚无老板授权，S5 前必须获得明确批准（REQ-004 绑定）",
+      "severity": "中",
+      "owner": "Lead",
+      "status": "open"
+    },
+    {
+      "id": "RISK-003",
+      "description": "S1 正式需求基线批准未做 artifact 绑定（老板口头拍板方向），M1 验收时随候选版本补绑",
+      "severity": "低",
+      "owner": "Lead",
+      "status": "open"
+    }
+  ],
+  "nextAction": "TASK-001 由 scaffold-dev 执行；完成后 lead 独立审查 → task-check → 集成 main → 老板验收",
+  "updatedAt": "2026-11-09T18:05:00+08:00"
+}

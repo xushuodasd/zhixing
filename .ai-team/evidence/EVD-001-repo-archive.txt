@@ -1,0 +1,6 @@
+EVD-001 | stage S2 | 2026-11-09T18:05:00+08:00 | 执行者：lead
+操作：废弃旧项目"每日股票分析"（老板直接选择"废弃旧项目"，见会话 ask_user_question 回执）
+命令：git branch archive/stock-analysis-20261109 a07060a; git checkout --orphan zhixing-base; git rm -r --cached .; git commit --allow-empty -m 'chore: initialize zhixing repository (prior stock-analysis project archived to branch archive/stock-analysis-20261109)'; git branch -M main
+结果：passed (exit 0)
+验证：git log --oneline --all --decorate; git status --short → main=66fe8326f754f979d65af2b7c95ff9fa75766073（全新根提交），归档分支 archive/stock-analysis-20261109=a07060a，工作区 clean
+限制：纯本地操作，未触碰任何远端；旧 main 引用被替换，旧历史经归档分支与 reflog 可达，可恢复

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "TASK-001",
+  "name": "M1 仓库立项与骨架",
+  "owner": "scaffold-dev",
+  "baseCommit": "66fe8326f754f979d65af2b7c95ff9fa75766073",
+  "branch": "feat/TASK-001-scaffold",
+  "allowedPaths": [
+    ".gitignore",
+    "LICENSE",
+    "README.md",
+    "pyproject.toml",
+    "src/",
+    "tests/",
+    "docs/",
+    ".ai-team/state.json",
+    ".ai-team/tasks/TASK-001.json",
+    ".ai-team/evidence/"
+  ],
+  "requirements": [
+    "REQ-001"
+  ],
+  "documentation": {
+    "updatedPaths": [
+      "README.md"
+    ],
+    "noImpactReason": ""
+  },
+  "checks": [
+    {
+      "name": "pytest 冒烟",
+      "command": ".venv/Scripts/python -m pytest -q",
+      "result": "passed",
+      "exitCode": 0,
+      "evidencePath": ".ai-team/evidence/TASK-001-pytest.log"
+    },
+    {
+      "name": "ruff 静态检查",
+      "command": ".venv/Scripts/ruff check .",
+      "result": "passed",
+      "exitCode": 0,
+      "evidencePath": ".ai-team/evidence/TASK-001-ruff.log"
+    }
+  ],
+  "review": {
+    "reviewer": "lead",
+    "decision": "changes-requested",
+    "source": "占位：任务刚创建尚未审查；完成后由非作者审查更新 decision 并绑定 candidateSha256"
+  }
+}
