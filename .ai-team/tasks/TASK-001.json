@@ -32,19 +32,43 @@
       "command": ".venv/Scripts/python -m pytest -q",
       "result": "passed",
       "exitCode": 0,
-      "evidencePath": ".ai-team/evidence/TASK-001-pytest.log"
+      "evidencePath": ".ai-team/evidence/TASK-001-pytest.log",
+      "candidateSha256": "df42d5b3b99b367e744ec6de61b64893f77d06282d4a372ccabd45e2e7622776",
+      "evidenceSha256": "b023713be730f7fcdc4e6b6bc11fa006b5c5f7a72d000e0a259f2f9fbff88dc6"
     },
     {
       "name": "ruff 静态检查",
       "command": ".venv/Scripts/ruff check .",
       "result": "passed",
       "exitCode": 0,
-      "evidencePath": ".ai-team/evidence/TASK-001-ruff.log"
+      "evidencePath": ".ai-team/evidence/TASK-001-ruff.log",
+      "candidateSha256": "df42d5b3b99b367e744ec6de61b64893f77d06282d4a372ccabd45e2e7622776",
+      "evidenceSha256": "e0af5e08a7ef46da5421b01a4ef0562a8b8873ea00d36522b4c928b565eef4dd"
+    },
+    {
+      "name": "集成复跑 pytest（Lead）",
+      "command": ".venv/Scripts/python -m pytest -q -p no:cacheprovider",
+      "result": "passed",
+      "exitCode": 0,
+      "evidencePath": ".ai-team/evidence/TASK-001-integration-pytest.log",
+      "candidateSha256": "df42d5b3b99b367e744ec6de61b64893f77d06282d4a372ccabd45e2e7622776",
+      "evidenceSha256": "9039a11ddfd601667a8bfd8234ed4a839d834234f8d76b947868ecb26a198dc7"
+    },
+    {
+      "name": "集成复跑 ruff（Lead）",
+      "command": ".venv/Scripts/ruff check .",
+      "result": "passed",
+      "exitCode": 0,
+      "evidencePath": ".ai-team/evidence/TASK-001-integration-ruff.log",
+      "candidateSha256": "df42d5b3b99b367e744ec6de61b64893f77d06282d4a372ccabd45e2e7622776",
+      "evidenceSha256": "af352a86840ad0af3d37ea0d9197f868363a6dac6b1c2ef5d2722f6b41d2d9af"
     }
   ],
   "review": {
     "reviewer": "lead",
-    "decision": "changes-requested",
-    "source": "占位：任务刚创建尚未审查；完成后由非作者审查更新 decision 并绑定 candidateSha256"
-  }
+    "decision": "approved",
+    "source": "Lead 独立审查（非作者）：2026-11-09 通读 bdcfafb+811e5f0 全部差异、检查证据与执行者披露；核对写域合规、Conventional Commits、README 诚实性（规划中标注）、pyproject/测试正确性；返工仅 .gitignore 两行（治理档案入库，ADR-002）。批准该候选。",
+    "candidateSha256": "df42d5b3b99b367e744ec6de61b64893f77d06282d4a372ccabd45e2e7622776"
+  },
+  "recordSha256": "b2a0241ae57533746f1dfde6c1636be8accfa11d7e5f3c13fa2c1e364b6c96f0"
 }
