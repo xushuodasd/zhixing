@@ -30,6 +30,6 @@
 - 依赖决策：仅新增 httpx（>=0.27）；不引入 pydantic/langchain 等重依赖——"轻"是定位，stdlib dataclasses 优先。
 - 测试策略：全部单测离线（FakeProvider + httpx.MockTransport），真实 API 调用仅做演示不进测试；e2e 场景：直接回答/工具调用后回答/工具报错恢复/迭代上限/记忆跨轮。
 - 交付方式：3 个任务**串行**（TASK-002 基础层 → 003 Provider 层 → 004 Agent 循环与端到端），各自独立分支、独立门禁、非作者独立审查、Lead 唯一集成。放弃并行 worktree 的原因：工作区即仓库根，仓库内 worktree 违反门禁"零 ignored 文件"，仓库外（%TEMP%）worktree 使工具级写受限；串行单写者等效满足隔离目标，代价是工期略长。
-- 环境配方（已验证）：venv 建在 %TEMP%\zhixing-venv（仓库外）；构建需 sitecustomize shim（PYTHONPATH=%TEMP%\zhixing-build，备份已存）；pip 用 --no-build-isolation --no-cache-dir；pytest 加 -p no:cacheprovider、PYTHONDONTWRITEBYTECODE=1；日志落盘用 UTF-8（Out-File -Encoding utf8，吸取 M1 UTF-16 教训）。
+- 环境配方（已验证）：venv 建在 %TEMP%\zhixing-venv（仓库外）；构建需 sitecustomize shim（PYTHONPATH=%TEMP%\zhixing-build，备份已存；TEMP 被清理时按配方重建）；Python 3.12 的 ensurepip 不再捆绑 setuptools——editable 安装前先 `pip install --no-cache-dir setuptools`；pip 用 --no-build-isolation --no-cache-dir；pytest 加 -p no:cacheprovider、PYTHONDONTWRITEBYTECODE=1；日志落盘用 UTF-8（Out-File -Encoding utf8，吸取 M1 UTF-16 教训）。
 - 风险：真实 LLM 接口行为（tool_calls 格式细节）以 OpenAI 兼容文档为准，M2 只保接口映射正确，真实联调演示放 M3 前。
 
