@@ -33,8 +33,6 @@ ENV/
 Thumbs.db
 
 # Project-specific
-.ai-team/
-docs/ai-team/
 data/
 
 # Transient pip / toolchain temp dirs (sandbox artifacts, not project files)
