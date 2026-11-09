@@ -4,7 +4,7 @@
     "name": "zhixing",
     "root": "C:\\Users\\xushu\\Desktop\\test"
   },
-  "stage": "S2",
+  "stage": "S4",
   "status": "active",
   "requirements": [
     {
@@ -39,6 +39,16 @@
       "result": "passed",
       "exitCode": 0,
       "at": "2026-11-09T18:05:00+08:00"
+    },
+    {
+      "id": "EVD-002",
+      "stage": "S4",
+      "path": ".ai-team/evidence/EVD-002-task-check-gate.txt",
+      "sha256": "2561c101479eeb315f0eebd6cd6ace1e38dd0704783885ad2e2b226a820a82ed",
+      "command": "node scripts/task-check.mjs <root> .ai-team/tasks/TASK-001.json（严格模式，详见证据文件）",
+      "result": "passed",
+      "exitCode": 0,
+      "at": "2026-11-09T22:01:00+08:00"
     }
   ],
   "tasks": [
@@ -67,6 +77,6 @@
       "status": "open"
     }
   ],
-  "nextAction": "TASK-001 由 scaffold-dev 执行；完成后 lead 独立审查 → task-check → 集成 main → 老板验收",
-  "updatedAt": "2026-11-09T18:05:00+08:00"
+  "nextAction": "老板验收 M1（main=894021a）；通过后 M1 闭环并启动 M2（Agent 核心），交接见 docs/ai-team/modules/M01-交接.md",
+  "updatedAt": "2026-11-09T22:05:00+08:00"
 }
