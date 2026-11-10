@@ -77,7 +77,7 @@ def test_unsupported_annotation_rejected() -> None:
 
 def test_missing_annotation_rejected() -> None:
     """参数缺少类型标注时快速失败，报错信息包含参数名。"""
-    with pytest.raises(ZhixingError, match="x"):
+    with pytest.raises(ZhixingError, match=r"参数 'x' 缺少类型标注"):
 
         @tool
         def bad(x) -> str:  # 刻意缺少标注以触发校验
@@ -87,14 +87,14 @@ def test_missing_annotation_rejected() -> None:
 
 def test_var_args_rejected() -> None:
     """*args / **kwargs 在装饰期被拒绝。"""
-    with pytest.raises(ZhixingError, match="不支持"):
+    with pytest.raises(ZhixingError, match=r"可变参数 'parts'"):
 
         @tool
         def bad(*parts: str) -> str:
             """可变参数不支持。"""
             return ""
 
-    with pytest.raises(ZhixingError, match="不支持"):
+    with pytest.raises(ZhixingError, match=r"可变参数 'options'"):
 
         @tool
         def bad_kwargs(**options: bool) -> str:

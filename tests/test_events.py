@@ -40,7 +40,16 @@ def test_recorder_collects_events_in_order() -> None:
         recorder.record(event)
     assert recorder.events == events
     assert all(a is b for a, b in zip(recorder.events, events, strict=True))
-    assert recorder.events is recorder.events  # events 是活跃视图（同一底层列表）
+
+
+def test_events_is_live_view_across_records() -> None:
+    """events 是活跃视图：record 后既得引用同步增长（非每次快照拷贝）。"""
+    recorder = TraceRecorder()
+    recorder.record(AgentStarted(user_input="第一轮"))
+    live = recorder.events
+    recorder.record(AgentFinished(answer="完成", iterations=1))
+    assert live is recorder.events
+    assert len(live) == 2
 
 
 def test_recorder_forwards_to_callback_in_order() -> None:

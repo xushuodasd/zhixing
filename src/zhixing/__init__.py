@@ -11,9 +11,11 @@ ZhiXing 旨在让大模型的"知"（规划与决策）与工具的"行"（真�
 - 工具：:class:`Tool` / :func:`tool` 装饰器 / :class:`ToolRegistry`；
 - 记忆：:class:`Memory` 协议；
 - 事件：六类运行事件与 :class:`TraceRecorder`（"每步可观测"落点）；
+- Provider：:class:`Provider` 协议 / :class:`OpenAICompatProvider` /
+  :class:`FakeProvider`；
 - 异常：:class:`ZhixingError` 及其细分（Provider / 工具 / 迭代上限）。
 
-Provider 适配层与 Agent 循环由后续里程碑提供。
+Agent 循环由后续里程碑提供。
 """
 
 from zhixing.core import (
@@ -35,6 +37,7 @@ from zhixing.core import (
     ZhixingError,
 )
 from zhixing.memory import Memory
+from zhixing.providers import FakeProvider, OpenAICompatProvider, Provider
 from zhixing.tools import Tool, ToolRegistry, tool
 
 __version__ = "0.1.0"
@@ -43,11 +46,14 @@ __all__ = [
     "AgentFinished",
     "AgentStarted",
     "Event",
+    "FakeProvider",
     "LlmRequested",
     "LlmResponded",
     "MaxIterationsError",
     "Memory",
     "Message",
+    "OpenAICompatProvider",
+    "Provider",
     "ProviderError",
     "ProviderResponse",
     "Tool",
