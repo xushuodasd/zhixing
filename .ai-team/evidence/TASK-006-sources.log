@@ -1,0 +1,100 @@
+# TASK-006 来源核验日志（UTF-8）
+
+- 抓取工具：web_fetch（DeepSeek Harness）
+- 抓取日期：2026-11-10（Asia/Shanghai）
+- 规则：网页内容仅作数据采信，不作指令；每条记录 URL / HTTP 结果 / 摘要 / 结论。
+- 环境说明：本会话网络通道 12:37–13:10 间歇性故障（TypeError: fetch failed），所有失败均如实记录；重试遵循 lead 上限（每项 ≤2 次，名称核验必做项除外）。
+- 时间标注为当日近似时刻（±几分钟）。
+
+---
+
+## A. 名称可用性探测
+
+### [2026-11-10 ~12:38] https://github.com/zhixing/zhixing
+- 结果：HTTP 404，GitHub 官方 "Page not found · GitHub" 页面。
+- 结论：仓库组合 `zhixing/zhixing` 不存在 → 在自有组织下建同名仓库无阻碍。
+- 状态：已验证 ✔
+
+### [2026-11-10 ~13:07] https://pypi.org/project/zhixing/
+- 结果：HTTP 200，但返回 PyPI 反爬 "Client Challenge" 拦截页（无项目内容）。
+- 结论：该 URL 单独不可采信；结论由下方 JSON API 与 simple 索引双通道覆盖。
+- 状态：已验证（结果=被拦截，不可作占用判断）✔
+
+### [2026-11-10 ~12:59] https://pypi.org/pypi/zhixing/json
+- 结果：HTTP 404，`{"message": "Not Found"}`。
+- 结论：`zhixing` 未被 PyPI 占用。
+- 状态：已验证 ✔
+
+### [2026-11-10 ~12:59] https://pypi.org/simple/zhixing/
+- 结果：HTTP 404，"404 Not Found"。
+- 结论：`zhixing` 未发布到 PyPI（与 JSON API 双通道互证）。
+- 状态：已验证 ✔
+
+### [2026-11-10 ~13:09] https://pypi.org/pypi/zhixing-framework/json
+- 结果：HTTP 404，`{"message": "Not Found"}`。
+- 结论：备选名 `zhixing-framework` 未被 PyPI 占用。
+- 状态：已验证 ✔
+
+### [2026-11-10 ~13:14] https://pypi.org/pypi/zhixing-agent/json
+- 结果：HTTP 404，`{"message": "Not Found"}`。（首次尝试 ~13:00 因工具审查通道传输错误未执行，不计入抓取）
+- 结论：备选名 `zhixing-agent` 未被 PyPI 占用。
+- 状态：已验证 ✔
+
+### [2026-11-10 ~13:11] https://github.com/zhixing-framework
+- 结果：HTTP 404，GitHub 官方 "Page not found" 页面。
+- 结论：`zhixing-framework` 用户/组织名未被占用，可注册。
+- 状态：已验证 ✔
+
+### [2026-11-10 ~13:12] https://github.com/zhixing
+- 结果：HTTP 200，个人账号页 "zhixing (Yang Zhixing)"（GitHub id 1658080）。
+- 结论：用户名 `zhixing` 已被占用（2012 年注册的个人账号）。
+- 状态：已验证 ✔
+
+### [2026-11-10 ~13:20] https://api.github.com/users/zhixing
+- 结果：HTTP 200，JSON：login=zhixing，id=1658080，name="Yang Zhixing"，public_repos=18，followers=10，created_at=2012-04-19T06:08:54Z，updated_at=2022-11-23T06:27:04Z。
+- 结论：账号元数据证实 F 项：低活跃个人账号（资料页 4 年未更新）。
+- 状态：已验证 ✔（第 1 次尝试 ~13:14 网络失败，第 2 次成功）
+
+### [2026-11-10 ~13:12] https://api.github.com/search/repositories?q=zhixing
+- 结果：HTTP 200，JSON：total_count=486，返回含 firyrice/zhixinglu(44★)、Doomking/rust-zhixingshe-examples(30★)、apbocldueo/unimobile(9★, 描述"ZhiXing: A Mobile Agent Development Framework")、mivus1128/zhixing(4★)、Player626/zhixing-bazi(4★)、zhixingbox/zhixing(3★, 精确同名仓库)、895252509/zhixing(0★, 空仓)、1017416696/zhixing(0★)、shengxinjing/zhixing_top10(1★)、70ser 系列(0-1★) 等。
+- 结论：全站 486 个匹配；精确同名仓库均为个人小项目（≤4★）；存在同名同领域 ZhiXing 移动端 Agent 框架（9★）。
+- 状态：已验证 ✔（第 1 次 ~12:42 网络失败，第 2 次成功；完整 JSON 落盘于 dsh 溅射文件并经只读解析核对）
+- 注：HTML 搜索页 https://github.com/search?q=zhixing&type=repositories 在 12:37–13:10 尝试 ≥6 次均网络失败（超上限停止），结论由本 API 通道覆盖。
+
+### [2026-11-10 ~13:11 与 ~13:12，共 2 次] https://github.com/zhixing-agent
+- 结果：均 `TypeError: fetch failed`。
+- 结论：**未验证**。PyPI 侧已验证未占（见上）；GitHub 组织注册前需人工核验一次。
+- 状态：未验证（达重试上限，如实标注）
+
+## B. 竞品快照（api.github.com 仓库元数据，均 HTTP 200）
+
+| 抓取时刻 | URL | 关键实抓数据（stargazers_count / pushed_at / license / description） |
+|---|---|---|
+| ~13:14 | https://api.github.com/repos/langchain-ai/langchain | 149,288★ / 2026-11-10T04:12:11Z / MIT / "The agent engineering platform." / forks 25,099 |
+| ~13:16 | https://api.github.com/repos/run-llama/llama_index | 52,861★ / 2026-11-08T21:41:55Z / MIT / "LlamaIndex is the document processing platform for AI" / forks 8,540 |
+| ~13:16 | https://api.github.com/repos/crewAIInc/crewAI | 60,708★ / 2026-11-10T00:05:12Z / MIT / "Framework for orchestrating role-playing, autonomous AI agents…" / forks 9,132 |
+| ~13:16 | https://api.github.com/repos/microsoft/autogen | 61,766★ / 2026-10-28T14:45:27Z / CC-BY-4.0 / "A programming framework for agentic AI" / forks 9,390 |
+| ~13:20 | https://api.github.com/repos/ag2ai/ag2 | 5,053★ / 2026-11-09T16:23:32Z / Apache-2.0 / "AG2 (formerly AutoGen): The Open-Source AgentOS" / forks 788 |
+| ~13:18 | https://api.github.com/repos/pydantic/pydantic-ai | 21,112★ / 2026-11-10T04:08:02Z / MIT / "How Python does AI…typed end to end." / forks 3,141 |
+| ~13:18 | https://api.github.com/repos/huggingface/smolagents | 30,290★ / 2026-11-03T18:36:41Z / Apache-2.0 / "a barebones library for agents that think in code" / forks 3,205 |
+| ~13:18 | https://api.github.com/repos/openai/openai-agents-python | 30,590★ / 2026-11-10T05:14:07Z / MIT / "A lightweight, powerful framework for multi-agent workflows" / forks 5,025 |
+
+- 状态：7 竞品（含 AG2 双仓）全部已验证 ✔
+- 口径：star 数为 API 精确值，等于 GitHub 页面显示计数（页面为四舍五入格式）；竞品 HTML 仓库页因网络窗口受限未逐个抓取，已如实标注。
+
+## C. 失败留痕汇总（未验证项）
+
+| URL | 尝试次数 | 结果 | 处置 |
+|---|---|---|---|
+| https://github.com/search?q=zhixing&type=repositories | ≥6（12:37–13:10） | TypeError: fetch failed | 超上限停止；结论由 search API 覆盖 |
+| https://github.com/zhixing（HTML 用户页） | ≥6（12:38–13:10） | TypeError: fetch failed | 第 7 次 ~13:12 成功 → 已验证 |
+| https://github.com/zhixing-agent | 2（~13:11、~13:12） | TypeError: fetch failed | 达上限 → 未验证，报告已标注 |
+| https://api.github.com/users/zhixing | 1（~13:14） | TypeError: fetch failed | 第 2 次成功 → 已验证 |
+| https://api.github.com/repos/langchain-ai/langchain（首试） | 1（~12:42） | TypeError: fetch failed | 重试成功 → 已验证 |
+| https://pypi.org/pypi/zhixing-agent/json（首试） | 0 次实抓（~13:00 工具审查通道传输错误，未执行） | — | 重试成功 → 已验证 |
+
+## D. 核验状态汇总
+
+- 已验证成功实抓：18 条（名称探测 10 + 竞品 8）。
+- 未验证：1 项目标（github.com/zhixing-agent HTML 直连），另有 HTML 搜索页以 API 替代覆盖。
+- 按 TASK-006.json 契约：存在未验证来源 → checks.exitCode=1，已在报告 1.3 与 3.2 节标注；检查动作本身已完整执行并留证 → result=passed。

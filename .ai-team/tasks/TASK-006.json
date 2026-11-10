@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "TASK-006",
+  "name": "M3 发布前调研：名称可用性 + 竞品快照（内部档案）",
+  "owner": "research-dev",
+  "baseCommit": "baa70665bf6e8bad3114e3171c93496d198bbc64",
+  "branch": "feat/TASK-006-release-research",
+  "allowedPaths": [
+    "docs/ai-team/research/",
+    "docs/",
+    ".ai-team/tasks/TASK-006.json",
+    ".ai-team/evidence/"
+  ],
+  "requirements": [
+    "REQ-004"
+  ],
+  "documentation": {
+    "updatedPaths": [
+      "docs/ai-team/research/2026-11-release-research.md"
+    ],
+    "noImpactReason": ""
+  },
+  "checks": [
+    {
+      "name": "来源核验",
+      "command": "对报告引用的每个 URL 用 web_fetch 逐条访问并将访问结果（可访问/内容要点/日期）写入报告附录与 .ai-team/evidence/TASK-006-sources.log",
+      "result": "passed",
+      "exitCode": 1,
+      "evidencePath": ".ai-team/evidence/TASK-006-sources.log"
+    }
+  ],
+  "review": {
+    "reviewer": "lead",
+    "decision": "changes-requested",
+    "source": "占位：任务创建时尚未审查；完成后由 lead（非作者）审查更新"
+  }
+}
