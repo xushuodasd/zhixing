@@ -41,6 +41,19 @@
         {"path": "README.md", "sha256": "24ebbbad616c4525b90fb4c5d6f504df89f3953ab4242675bdb2683c5c206a9f"},
         {"path": ".ai-team/evidence/EVD-002-task-check-gate.txt", "sha256": "2561c101479eeb315f0eebd6cd6ace1e38dd0704783885ad2e2b226a820a82ed"}
       ]
+    },
+    {
+      "stage": "S4",
+      "decision": "approved",
+      "source": "依据用户 2026-11-09 常设授权（直接消息\"你是总监不应该问我，你自己决定\"：验收类决定由 Lead 自主记录），Lead 于 2026-11-10 对 M2 完成验收：main=ebf78ba 上 59 测试全绿（EVD-006）、quickstart 端到端演示实跑通过（EVD-007）、三任务独立审查全 approved（m2-reviewer，见各 TASK JSON）、严格门禁全过（EVD-003/004/005）",
+      "approvedBy": "用户（常设授权，Lead 代记）",
+      "at": "2026-11-10T11:05:00+08:00",
+      "scope": "M2 模块验收（REQ-002）通过：Agent/Tool/Provider/Memory 核心与端到端循环；推送/发布不在本授权内",
+      "evidenceSha256": "2f12caa9c5d6f3d4bc9be790ddfb2a21a89f06afed3316a05a96f85a4dbb2543",
+      "artifacts": [
+        {"path": ".ai-team/evidence/EVD-006-main-verify-pytest.log", "sha256": "2f12caa9c5d6f3d4bc9be790ddfb2a21a89f06afed3316a05a96f85a4dbb2543"},
+        {"path": ".ai-team/evidence/EVD-007-quickstart-demo.txt", "sha256": "192df335a2751e8d21ffe3943d6d78acf42a0eb06a97c9f1acdd933ad22e3c85"}
+      ]
     }
   ],
   "evidence": [
@@ -63,6 +76,56 @@
       "result": "passed",
       "exitCode": 0,
       "at": "2026-11-09T22:01:00+08:00"
+    },
+    {
+      "id": "EVD-003",
+      "stage": "S3",
+      "path": ".ai-team/evidence/EVD-003-task-002-gate.txt",
+      "sha256": "28f4779d3bf21e6cc4f992cd9a287f0296bfd46253300c08aca524ad20856d5e",
+      "command": "node scripts/task-check.mjs <root> .ai-team/tasks/TASK-002.json（严格模式，详见证据文件）",
+      "result": "passed",
+      "exitCode": 0,
+      "at": "2026-11-10T09:40:00+08:00"
+    },
+    {
+      "id": "EVD-004",
+      "stage": "S3",
+      "path": ".ai-team/evidence/EVD-004-task-003-gate.txt",
+      "sha256": "1a03a6ade572885b6a14be60f82e82d75c2c4bbaf6435afb0fb402c0a0183994",
+      "command": "node scripts/task-check.mjs <root> .ai-team/tasks/TASK-003.json（严格模式，详见证据文件）",
+      "result": "passed",
+      "exitCode": 0,
+      "at": "2026-11-10T10:15:00+08:00"
+    },
+    {
+      "id": "EVD-005",
+      "stage": "S3",
+      "path": ".ai-team/evidence/EVD-005-task-004-gate.txt",
+      "sha256": "595ef85059e05a5b502ac75e850a977c4d654854839d1ceba96196bcbf5f1ad9",
+      "command": "node scripts/task-check.mjs <root> .ai-team/tasks/TASK-004.json（严格模式，详见证据文件）",
+      "result": "passed",
+      "exitCode": 0,
+      "at": "2026-11-10T10:50:00+08:00"
+    },
+    {
+      "id": "EVD-006",
+      "stage": "S4",
+      "path": ".ai-team/evidence/EVD-006-main-verify-pytest.log",
+      "sha256": "2f12caa9c5d6f3d4bc9be790ddfb2a21a89f06afed3316a05a96f85a4dbb2543",
+      "command": "main=ebf78ba 上 Lead 全量复跑：python -m pytest -q -p no:cacheprovider（exit 0，59 passed）",
+      "result": "passed",
+      "exitCode": 0,
+      "at": "2026-11-10T11:00:00+08:00"
+    },
+    {
+      "id": "EVD-007",
+      "stage": "S4",
+      "path": ".ai-team/evidence/EVD-007-quickstart-demo.txt",
+      "sha256": "192df335a2751e8d21ffe3943d6d78acf42a0eb06a97c9f1acdd933ad22e3c85",
+      "command": "main=ebf78ba 上实跑 examples/quickstart.py（-X utf8，exit 0；8 条事件轨迹：模型发起工具调用→执行→最终答案）",
+      "result": "passed",
+      "exitCode": 0,
+      "at": "2026-11-10T11:00:00+08:00"
     }
   ],
   "tasks": [
@@ -92,6 +155,6 @@
       "mitigation": "已由用户常设授权消解（2026-11-09：验收类决定由 Lead 自主记录）；需求基线随各模块验收绑定，见 state.json approvals"
     }
   ],
-  "nextAction": "M1 已验收闭环（main=2c62a2e）；M2（Agent 核心）新会话按 docs/ai-team/modules/M01-交接.md 第 7 节开场白启动",
-  "updatedAt": "2026-11-09T22:20:00+08:00"
+  "nextAction": "M2 已验收闭环（main=ebf78ba，59 测试全绿 + quickstart 演示通过）；M3（双语门面与文档）新会话按 docs/ai-team/modules/M02-交接.md 第 7 节开场白启动",
+  "updatedAt": "2026-11-10T11:05:00+08:00"
 }

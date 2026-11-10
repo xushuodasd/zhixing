@@ -4,24 +4,20 @@
 研发总监：只对话、决策、派工审查、集成验收；不亲自写代码或调试。
 
 ## 当前状态
-- **M1 已验收闭环**（老板 2026-11-09 22:16 确认；main=2c62a2e；门禁 EVD-002 全绿）
-- 本会话使命完成；M2 开新会话，按 docs/ai-team/modules/M01-交接.md 第 7 节开场白启动
-
-## 已派任务（本会话）
-| 任务 | 子智能体 | 结果 |
-|---|---|---|
-| TASK-001 仓库立项与骨架 | scaffold-dev | 2 提交 + 1 返工，审查 approved，已合并 main |
+- **M2 已验收闭环**（2026-11-10 11:05，Lead 按常设授权记录；main=ebf78ba；59 测试全绿；quickstart 演示 8 条事件轨迹通过——EVD-006/007）
+- M2 三任务：7414b27 基础层 + 3bf09ba Provider 层 + e615049 Agent 循环，独立审查全 approved、严格门禁全过
+- 本会话使命完成；M3 新会话按 docs/ai-team/modules/M02-交接.md 第 7 节开场白启动
 
 ## 关键决策（下轮不要重做）
-- 项目 zhixing：AI Agent 框架（Python 3.11+/src/pytest+ruff/MIT）；ADR-001/002 已记录
-- 治理档案入库、瞬态产物出库（%TEMP%）、摘要固定 docs/ai-team/session-digest.md
-- task-check 需 danger-full-access（沙箱 EPERM 边界，ADR-002 备案）
+- 对外 API 已定型：Agent.run / @tool / OpenAICompatProvider（默认 DeepSeek）/ FakeProvider / InMemoryMemory；错误一律折算不外抛
+- 三处循环语义正式接纳（见 M02 交接第 4 节）；测试全离线策略；串行交付（ADR-003）
+- 教训已入 ADR-003：日志落盘用 Out-File -Encoding utf8（*> 会出 UTF-16）；PowerShell 里 venv 路径用 $env:TEMP 不是 %TEMP%
 
-## 老板常设授权（重要）
-- 验收类与常规技术决定由总监自主拍板并记录，不再询问
-- 仅推送/发布/部署等不可逆外部动作需老板单独批准（M4）
+## 老板常设授权（仍然有效）
+- 验收类与常规技术决定由总监自主拍板并记录
+- 仅推送/发布/部署等不可逆动作需老板单独批准（M4）；真实 API key 到 M3 联调时按授权规则申请
 
 ## 下一步
-- M2 Agent 核心：新会话读 M01-交接.md 开工；核心循环/工具注册/Provider 适配/离线单测
+- M3：双语 README、快速开始、CONTRIBUTING/CODE_OF_CONDUCT、真实 API 联调、市场调研留档
 
-> 更新于：2026-11-09 22:20；版本：M1-最终
+> 更新于：2026-11-10 11:10；版本：M2-最终

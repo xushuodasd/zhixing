@@ -1,0 +1,11 @@
+﻿[事件] AgentStarted     —— 接到任务：北京今天天气怎么样？
+[事件] LlmRequested     —— 请求模型（携带 2 条消息）
+[事件] LlmResponded     —— 模型发起工具调用
+[事件] ToolCallStarted  —— 执行工具 get_weather，参数 {'city': '北京'}
+[事件] ToolCallFinished —— 工具执行成功：北京：晴，气温 12℃，微风
+[事件] LlmRequested     —— 请求模型（携带 4 条消息）
+[事件] LlmResponded     —— 模型给出最终回答
+[事件] AgentFinished    —— 本轮结束，共调用模型 2 次
+
+最终答案：北京现在天气晴，气温 12℃，微风，适合外出。
+事件轨迹共 8 条，模型调用 2 次。
