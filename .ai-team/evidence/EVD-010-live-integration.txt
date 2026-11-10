@@ -1,0 +1,10 @@
+EVD-010 | stage S4 真实端点联调 | 2026-11-10 14:15+08:00 | 执行者：lead
+任务：M4 发布前真实联调（老板于 2026-11-10 14:10 会话中直接提供 DeepSeek API key）
+方式：临时脚本（%TEMP%\zhixing-live-test.py，脚本本身不含任何凭据）+ 环境变量 ZHIXING_API_KEY 瞬时注入；key 未写入任何项目文件/档案/提交；测试完成即建议老板在平台侧轮换该 key
+结果：passed (exit 0)——真实 DeepSeek 端点（api.deepseek.com，deepseek-chat）端到端：
+- Agent 接到"北京今天天气怎么样？"
+- 模型发起 get_weather 工具调用 → 工具执行成功
+- 结果回喂后模型给出最终答案："北京今天天气晴朗，气温 22℃，微风，体感比较舒适，适合外出活动。"
+- 8 条事件 / 2 轮迭代 / stopped_reason=completed
+意义：框架对真实 LLM 端点的端到端行为已验证（此前仅 MockTransport 离线验证）；README/CHANGELOG 中"真实端点未联调"的已知限制自本条证据起可更新为"已联调（2026-11-10 单次真实调用通过）"
+注意：本证据文件不含凭据；联调用例为固定数据工具，验证的是协议层与循环层，非模型质量

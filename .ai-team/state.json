@@ -5,7 +5,7 @@
     "root": "C:\\Users\\xushu\\Desktop\\test"
   },
   "stage": "S4",
-  "status": "active",
+  "status": "awaiting-approval",
   "requirements": [
     {
       "id": "REQ-001",
@@ -139,10 +139,45 @@
       "result": "passed",
       "exitCode": 0,
       "at": "2026-11-10T11:00:00+08:00"
+    },
+    {
+      "id": "EVD-008",
+      "stage": "S3",
+      "path": ".ai-team/evidence/EVD-008-task-005-gate.txt",
+      "sha256": "d725a269efe48d6c578f41f38401150f8f742014308a4ac627ec074bc86625e6",
+      "command": "node scripts/task-check.mjs <root> .ai-team/tasks/TASK-005.json（严格模式，详见证据文件）",
+      "result": "passed",
+      "exitCode": 0,
+      "at": "2026-11-10T12:40:00+08:00"
+    },
+    {
+      "id": "EVD-009",
+      "stage": "S3",
+      "path": ".ai-team/evidence/EVD-009-task-006-gate.txt",
+      "sha256": "f7969873ff1aaeb39c1df4bc4a28133ad2df7e98f386280a10196e4aac580631",
+      "command": "node scripts/task-check.mjs <root> .ai-team/tasks/TASK-006.json（严格模式，详见证据文件）",
+      "result": "passed",
+      "exitCode": 0,
+      "at": "2026-11-10T13:30:00+08:00"
+    },
+    {
+      "id": "EVD-010",
+      "stage": "S4",
+      "path": ".ai-team/evidence/EVD-010-live-integration.txt",
+      "sha256": "30f5b09d4d80a3dee0b3678a4cdeba65b03ae4fd9e2cdfc060de52d8f91c65e9",
+      "command": "真实 DeepSeek 端点联调：临时脚本（无凭据落盘）+ ZHIXING_API_KEY 环境变量瞬时注入（exit 0；详见证据文件）",
+      "result": "passed",
+      "exitCode": 0,
+      "at": "2026-11-10T14:15:00+08:00"
     }
   ],
   "tasks": [
-    ".ai-team/tasks/TASK-001.json"
+    ".ai-team/tasks/TASK-001.json",
+    ".ai-team/tasks/TASK-002.json",
+    ".ai-team/tasks/TASK-003.json",
+    ".ai-team/tasks/TASK-004.json",
+    ".ai-team/tasks/TASK-005.json",
+    ".ai-team/tasks/TASK-006.json"
   ],
   "risks": [
     {
@@ -158,7 +193,8 @@
       "description": "GitHub 推送/发布尚无老板授权，S5 前必须获得明确批准（REQ-004 绑定）",
       "severity": "中",
       "owner": "Lead",
-      "status": "open"
+      "status": "open",
+      "mitigation": "2026-11-10 14:10 老板明确选择：暂不发布、暂不授权推送；项目封存于随时可发布状态（真实端点联调已完成，EVD-010）；恢复条件：老板提供仓库地址并明确授权推送"
     },
     {
       "id": "RISK-003",
@@ -169,6 +205,6 @@
       "mitigation": "已由用户常设授权消解（2026-11-09：验收类决定由 Lead 自主记录）；需求基线随各模块验收绑定，见 state.json approvals"
     }
   ],
-  "nextAction": "M3 已验收闭环（main=833870a）；M4（发布）待用户提供：GitHub 仓库地址/组织名拍板 + 推送授权 + 可选 DeepSeek API key（真实端点联调），见 docs/ai-team/modules/M03-交接.md",
-  "updatedAt": "2026-11-10T13:45:00+08:00"
+  "nextAction": "M1-M3 已验收闭环、真实端点联调通过（EVD-010，main=833870a+c59c3e7 档案）；M4（推送/发布）由老板 2026-11-10 14:10 明确暂停——恢复需其提供仓库地址并明确授权；恢复流程见 docs/ai-team/modules/M04-交接.md",
+  "updatedAt": "2026-11-10T14:20:00+08:00"
 }
