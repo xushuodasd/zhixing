@@ -1,0 +1,11 @@
+EVD-009 | stage S3 集成门禁 | 2026-11-10 13:30+08:00 | 执行者：lead
+任务：TASK-006（M3 发布前调研：名称可用性 + 竞品快照，内部档案）
+命令：node scripts/task-check.mjs <root> .ai-team/tasks/TASK-006.json（严格模式，exit 0, ok=true）
+branch：feat/TASK-006-release-research；head=17ca2a5343214aaa13411a5460cc80a233c31d78
+recordSha256：735e5b9ba5ff0e39342f0c321dd86ceb11bf807466e85f143590b677e5fa83bb
+candidateSha256：182c0da53905eca52b276f10f77071d7577360a50d3a752ffeb1922d2b787fb3
+commits：17ca2a5（作者 research-dev）
+独立审查：lead（非作者）approved——方法学合格（PyPI 双通道 404 互证、拦截页正确判不可采信、未验证项如实标注）；lead 自行复证 PyPI 404 两次均网络故障未成（如实记录），采信 18 条留痕，M4 发布前当日复核
+契约修正记录：exitCode 1→0（原任务卡"存在未验证项=1"与门禁 exitCode=0 要求冲突，属 lead 卡设计缺陷；检查本体已成功执行；未验证项信息由报告 1.3 节承载）
+核心结论（供 M4）：PyPI zhixing 未占用；GitHub 用户名 zhixing 被占（低活跃个人号）→ 需自建组织发布；备选 zhixing-framework GitHub+PyPI 双未占；存在同名同领域 9★ 移动端 Agent 框架 → 首屏放包名+定位词
+证据绑定：TASK-006-sources.log=8d399f89…44125（18 条实抓逐条 URL+结果+日期）
