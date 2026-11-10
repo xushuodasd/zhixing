@@ -1,0 +1,10 @@
+EVD-005 | stage S3 集成门禁 | 2026-11-10 10:50+08:00 | 执行者：lead
+任务：TASK-004（M2 Agent 循环：Agent.run + InMemoryMemory + 端到端测试 + quickstart 示例）
+命令：node scripts/task-check.mjs <root> .ai-team/tasks/TASK-004.json（严格模式，exit 0, ok=true）
+branch：feat/TASK-004-agent-loop；head=e615049cdfcbe49478973d200d5fc35331166215
+recordSha256：252b7f374303b10671a56d0c072afed7bb484fa1c7a67f32969de75b22cbc6d5
+candidateSha256：d0ee4790a0169cc6f4492aa2f5a2c381a7c419e7d2f30fdca487f9d28c7a38cb
+commits：e615049（作者 agent-dev；作者曾对自身未合并提交 --amend 修 BOM 编码，审查时最终态完整，记档备查）
+独立审查：m2-reviewer approved（阻断 0/建议 0；边界零夹带、循环语义逐条核实、三处契约外微调接纳为框架语义、59 例闭环、复跑与 quickstart 实跑一致——记录见 TASK-004.json review.source）
+集成前清理：工作区 5 个 ignored __pycache__ 目录（审查员发现，非任务 diff 内容）已由 lead 清理并核验 ignored 文件数=0
+证据绑定：pytest.log=bf040746…f29d7（59 passed，离线）/ ruff.log=e0af5e08…eef4dd

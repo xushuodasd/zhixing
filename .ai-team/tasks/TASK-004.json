@@ -30,6 +30,7 @@
       "result": "passed",
       "exitCode": 0,
       "evidencePath": ".ai-team/evidence/TASK-004-pytest.log",
+      "candidateSha256": "d0ee4790a0169cc6f4492aa2f5a2c381a7c419e7d2f30fdca487f9d28c7a38cb",
       "evidenceSha256": "bf040746dacc041a3b64c334e029fe0a4f9c700cdf245836f5a758effe0f29d7"
     },
     {
@@ -38,12 +39,15 @@
       "result": "passed",
       "exitCode": 0,
       "evidencePath": ".ai-team/evidence/TASK-004-ruff.log",
+      "candidateSha256": "d0ee4790a0169cc6f4492aa2f5a2c381a7c419e7d2f30fdca487f9d28c7a38cb",
       "evidenceSha256": "e0af5e08a7ef46da5421b01a4ef0562a8b8873ea00d36522b4c928b565eef4dd"
     }
   ],
   "review": {
     "reviewer": "m2-reviewer",
-    "decision": "changes-requested",
-    "source": "占位：任务创建时尚未审查；完成后由非作者独立审查更新，candidateSha256 由 lead 集成时绑定"
-  }
+    "decision": "approved",
+    "source": "独立审查通过（2026-11-10）：分支 feat/TASK-004-agent-loop，范围 3d474a9..HEAD（单提交 e615049）。关键确认：①11 个 changedPaths 全部⊆allowedPaths，core/、tools/、providers/ 三包在 diff 中零改动（边界最要紧项，name-status 核实），agent.py M1 占位由实现取代，memory/ 新增 InMemoryMemory；②循环语义逐条对代码核实：事件顺序 AgentStarted→LlmRequested→LlmResponded→ToolCallStarted→ToolCallFinished→（回喂后 LlmRequested 循环）→AgentFinished，tool_call_id 用 call.id 回填（result 与 Message.tool 双处），tool 消息追加后 continue 继续循环，收敛时 assistant 入 memory 且 stopped_reason=\"completed\"，无注册表时 complete 的 tools 参数传 None；③三处契约外微调核实合理且测试真实覆盖，正式接纳为框架语义：(a) max_iterations<1 构造期抛 ZhixingError（护栏配置错误前移），(b) 未配置工具收到 tool_calls 折算 is_error 回喂保持自愈循环，(c) 达上限在第 N+1 次请求前抛 MaxIterationsError（循环顶检查，异常消息含已迭代次数，该轮不发 LlmRequested，on_event 仍可收到已发生事件）；④17 例新增（agent 11+in_memory 5+quickstart 1）真实覆盖 7 类场景，断言具体：上限测试断言消息含\"已迭代 2 次\"且 LlmRequested==2、无 AgentFinished；记忆跨 run 断言第二次 LlmRequested 消息含第一轮问答与最终回答；RecordingProvider 记录 complete 实参而非 mock 自说自话；无恒真断言；⑤证据一致性核实：pytest.log/ruff.log SHA256 实算与 evidenceSha256 逐字一致，59 passed/All checks passed/exit 0 与 checks 回写吻合，计数闭环（59=42+17）；⑥复跑抽查（%TEMP%\\zhixing-venv 安全 flag）59 passed 与证据一致，并实跑 quickstart（exit 0，8 条事件轨迹顺序与实现吻合，离线无 key）；⑦quickstart.py 离线可跑、六类事件逐行人类可读打印（含工具成败标记与迭代统计），docstring 讲清知行合一/每步可观测两个卖点与切换真实 Provider 的零改动路径，可作老板演示门面。非本任务问题 1 条（lead 集成前处理）：复跑时发现工作区存在 5 个 ignored __pycache__ 目录（src/zhixing 及 4 个子包，文件时间 10:25:57，早于本人复跑，不在本 diff 内），import 面特征指向一次未带 PYTHONDONTWRITEBYTECODE=1 的 quickstart/import 验证运行，违反 ADR-002 门禁\"零 ignored 文件\"，请 lead 集成时清理（本人只读纪律未代删）。candidateSha256 由 lead 集成时绑定。",
+    "candidateSha256": "d0ee4790a0169cc6f4492aa2f5a2c381a7c419e7d2f30fdca487f9d28c7a38cb"
+  },
+  "recordSha256": "252b7f374303b10671a56d0c072afed7bb484fa1c7a67f32969de75b22cbc6d5"
 }
