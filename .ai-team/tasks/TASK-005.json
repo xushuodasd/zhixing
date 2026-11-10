@@ -34,7 +34,8 @@
       "result": "passed",
       "exitCode": 0,
       "evidencePath": ".ai-team/evidence/TASK-005-pytest.log",
-      "evidenceSha256": "C413C46BEC92A936BC9544290F8E19B81783C74CEE829495FA3A64B2D91E49EB"
+      "candidateSha256": "05abce876786e3ee0573e1fc5bd145716e74f1a3ed53bb99862669701cb7393a",
+      "evidenceSha256": "c413c46bec92a936bc9544290f8e19b81783c74cee829495fa3a64b2d91e49eb"
     },
     {
       "name": "ruff 静态检查",
@@ -42,12 +43,15 @@
       "result": "passed",
       "exitCode": 0,
       "evidencePath": ".ai-team/evidence/TASK-005-ruff.log",
-      "evidenceSha256": "E0AF5E08A7EF46DA5421B01A4EF0562A8B8873EA00D36522B4C928B565EEF4DD"
+      "candidateSha256": "05abce876786e3ee0573e1fc5bd145716e74f1a3ed53bb99862669701cb7393a",
+      "evidenceSha256": "e0af5e08a7ef46da5421b01a4ef0562a8b8873ea00d36522b4c928b565eef4dd"
     }
   ],
   "review": {
     "reviewer": "m2-reviewer",
-    "decision": "changes-requested",
-    "source": "占位：任务创建时尚未审查；完成后由非作者独立审查更新，candidateSha256 由 lead 集成时绑定"
-  }
+    "decision": "approved",
+    "source": "独立审查通过（2026-11-10）：分支 feat/TASK-005-facade-docs，范围 7781a47..HEAD（单提交 93cea34，4 个 changedPaths 全部⊆allowedPaths）。诚实性核对（最重要项）：README 已实现清单 12 项逐条对照 src 实际代码与导出面全部吻合（Agent 循环/max_iterations 护栏/@tool 推导/Registry 错误自愈/六类事件/Provider 协议与 DeepSeek 默认/Key 解析链构造期快速失败/FakeProvider/Memory 协议+InMemoryMemory/骨架沉淀语义/httpx 唯一运行时依赖/59 测试全绿与 0.1.0 版本）；Roadmap 三项明确标注\"尚未实现，禁止把它们当成已有功能使用\"，无规划写成已有、无夸大；README:124 诚实声明与 CHANGELOG Known Limitations 三条（真实端点未联调/无流式/InMemoryMemory 单线程）逐一与代码事实一致（in_memory.py 明示单线程无锁）；演示输出与 EVD-007-quickstart-demo.txt 逐字一致且与本人 TASK-004 复跑结构吻合。可复制性抽查（本人实测，%TEMP% git clone 副本 93cea34）：README 快速开始四条命令照抄全流程跑通——venv 创建、pip install -e \".[dev]\" exit 0、quickstart exit 0（8 条事件+最终答案）、pytest 末行 59 passed 与 README 承诺一致；venv 激活拦截的处理（Activate.ps1 被拦截则直跑 .venv\\Scripts\\python.exe）表述清楚。一致性：README 的 Agent/@tool/OpenAICompatProvider 签名与错误语义与 src 代码及 M02 交接第 4 节对外契约逐项一致；LICENSE 文件存在，链接有效；COC 为 Contributor Covenant 2.1 简明中文版、邮箱占位（已知情，可接受）。证据一致性：pytest.log（59 passed）/ruff.log SHA256 实算与契约 evidenceSha256 逐字一致，与 checks 回写吻合；git status --porcelain --ignored 零输出，作者清理 10:54 遗留 pycache 属实。建议级 1 条（不阻断）：CONTRIBUTING.md:57-67 \"真实提交示例\"为缩略版（真实 e615049 的 Checks 字段含完整命令与证据路径，示例缩写为 \"pytest 59 passed, ruff all green\"），字段与事实均真、仅省略细节，建议标注\"格式示例（简化）\"或逐字引用。观察 1 条：M02 交接第 5 节建议的 GBK 控制台乱码备注未落入 README/quickstart（README 贴的是程序真实 UTF-8 输出、无失真，仅影响部分 Windows 终端显示体验），可后续处理。candidateSha256 由 lead 集成时绑定。",
+    "candidateSha256": "05abce876786e3ee0573e1fc5bd145716e74f1a3ed53bb99862669701cb7393a"
+  },
+  "recordSha256": "fe1afad2ba88a449d43c9dc3f096340c0e563b8bddae15b1b9cb798056d8604f"
 }

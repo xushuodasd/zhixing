@@ -1,0 +1,10 @@
+EVD-008 | stage S3 集成门禁 | 2026-11-10 12:40+08:00 | 执行者：lead
+任务：TASK-005（M3 对外门面：README/CONTRIBUTING/CODE_OF_CONDUCT/CHANGELOG）
+命令：node scripts/task-check.mjs <root> .ai-team/tasks/TASK-005.json（严格模式，exit 0, ok=true）
+branch：feat/TASK-005-facade-docs；head=93cea34a49d4bc9357e3194770465381930557b8
+recordSha256：fe1afad2ba88a449d43c9dc3f096340c0e563b8bddae15b1b9cb798056d8604f
+candidateSha256：05abce876786e3ee0573e1fc5bd145716e74f1a3ed53bb99862669701cb7393a
+commits：93cea34（作者 docs-dev；曾对自身未合并提交 --amend 修 BOM，记档备查）
+独立审查：m2-reviewer approved（诚实性 12 项逐条对照代码吻合；%TEMP% clone 副本照抄 README 四条命令实测跑通；阻断 0/建议 1 不阻断——CONTRIBUTING 提交示例为缩略版，标注建议转后续；观察 1——GBK 显示备注可后续）
+契约修正记录：evidenceSha256 大写→小写规范化（门禁要求 64 位小写 hex），数值不变
+证据绑定：pytest.log=c413c46b…e49eb（59 passed）/ ruff.log=e0af5e08…eef4dd
