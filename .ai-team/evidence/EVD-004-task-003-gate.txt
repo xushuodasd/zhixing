@@ -1,0 +1,10 @@
+EVD-004 | stage S3 集成门禁 | 2026-11-10 10:15+08:00 | 执行者：lead
+任务：TASK-003（M2 Provider 层：Provider 协议 + OpenAICompatProvider + FakeProvider）
+命令：node scripts/task-check.mjs <root> .ai-team/tasks/TASK-003.json（严格模式，exit 0, ok=true）
+branch：feat/TASK-003-providers；head=3bf09baeaf77e9390521f24bffcf27e4b608c1c5
+recordSha256：7ed127de63887cd7fc5d6cfb702d4f3f75e468af45c0afcb1b0a314d63d0d712
+candidateSha256：04db68554abc237c7ec54e6661a78692f88a7436d350da507695f2619db5bdf2
+commits：3bf09ba（作者 core-dev）
+独立审查：m2-reviewer approved（阻断 0/建议 0/观察 1 不阻断；序列化往返、密钥不泄漏、契约外微调合理性逐条核实；复跑抽查一致——记录见 TASK-003.json review.source）
+证据绑定：pytest.log=56d56ea8…d38cf0（42 passed，离线）/ ruff.log=e0af5e08…eef4dd
+契约修正记录：allowedPaths 补删改路径 src/zhixing/providers.py（占位文件被 providers/ 包取代，沿用 TASK-002 已批准模式）
