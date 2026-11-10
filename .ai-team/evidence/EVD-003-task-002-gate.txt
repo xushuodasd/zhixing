@@ -1,0 +1,10 @@
+EVD-003 | stage S3 集成门禁 | 2026-11-10 09:40+08:00 | 执行者：lead
+任务：TASK-002（M2 基础层：core types/events/exceptions + tools registry + memory protocol）
+命令：node scripts/task-check.mjs <root> .ai-team/tasks/TASK-002.json（严格模式，exit 0, ok=true）
+branch：feat/TASK-002-core-foundation；head=ce6dcb95b8f837a4a0c117a24bb9d8f1879805ad
+recordSha256：dd39ad368ade933719ef7922041e04552aeb70cf67bad90603df8a184671a59d
+candidateSha256：03ee1a9cf40bf2e686e20acaf096148667eac8dc0f5833e6b143155a0ede6bd0
+commits：7414b27（代码，作者 core-dev）/ 96cbe0a、ce6dcb9（ADR-003，lead）
+独立审查：m2-reviewer approved（范围 20 项⊆allowedPaths、24 例测试真实覆盖、证据哈希逐字核对一致、复跑抽查一致、两条建议级弱断言不阻断——记录见 TASK-002.json review.source）
+证据绑定：pytest.log=258e9f1a…7f44ce / ruff.log=e0af5e08…eef4dd（24 passed / All checks passed / exit 0）
+契约修正记录：①result 枚举值规范化（"passed（24 passed）"→"passed"，数据在日志中）②allowedPaths 补删改路径 src/zhixing/tools.py、src/zhixing/memory.py（M1 占位文件被包取代，审查员已核实）
