@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "id": "TASK-005",
+  "name": "M3 对外门面：双语 README + CONTRIBUTING + CODE_OF_CONDUCT + CHANGELOG",
+  "owner": "docs-dev",
+  "baseCommit": "7781a47d2c207423869a5ff8be2abbd7db17e094",
+  "branch": "feat/TASK-005-facade-docs",
+  "allowedPaths": [
+    "README.md",
+    "CONTRIBUTING.md",
+    "CODE_OF_CONDUCT.md",
+    "CHANGELOG.md",
+    "docs/",
+    ".ai-team/state.json",
+    ".ai-team/tasks/TASK-005.json",
+    ".ai-team/evidence/"
+  ],
+  "requirements": [
+    "REQ-003"
+  ],
+  "documentation": {
+    "updatedPaths": [
+      "README.md",
+      "CONTRIBUTING.md",
+      "CODE_OF_CONDUCT.md",
+      "CHANGELOG.md"
+    ],
+    "noImpactReason": ""
+  },
+  "checks": [
+    {
+      "name": "pytest 全量单测",
+      "command": "%TEMP% venv: python -m pytest -q -p no:cacheprovider",
+      "result": "passed",
+      "exitCode": 0,
+      "evidencePath": ".ai-team/evidence/TASK-005-pytest.log",
+      "evidenceSha256": "C413C46BEC92A936BC9544290F8E19B81783C74CEE829495FA3A64B2D91E49EB"
+    },
+    {
+      "name": "ruff 静态检查",
+      "command": "%TEMP% venv: ruff check . --no-cache",
+      "result": "passed",
+      "exitCode": 0,
+      "evidencePath": ".ai-team/evidence/TASK-005-ruff.log",
+      "evidenceSha256": "E0AF5E08A7EF46DA5421B01A4EF0562A8B8873EA00D36522B4C928B565EEF4DD"
+    }
+  ],
+  "review": {
+    "reviewer": "m2-reviewer",
+    "decision": "changes-requested",
+    "source": "占位：任务创建时尚未审查；完成后由非作者独立审查更新，candidateSha256 由 lead 集成时绑定"
+  }
+}
