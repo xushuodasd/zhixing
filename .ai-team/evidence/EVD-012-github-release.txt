@@ -1,0 +1,12 @@
+EVD-012 | stage S5 发布 | 2026-11-11 15:10+08:00 | 执行者：lead
+任务：M4 GitHub 首次发布（授权依据：老板 2026-11-11 会话消息"你能连github自己建仓自己发吗"并提供 GitHub token，即明确委托建仓+发布）
+动作序列：
+1. token 校验（GET /user → xushuodasd）与目标仓库不存在核验（404 可建）
+2. POST /user/repos → 创建公开仓库 xushuodasd/zhixing（CREATED）
+3. 发布前小修 TASK-007（clone 地址替换/示例标注/联调口径更新，a3837fe+20b31d9，lead R0 审查 approved，严格门禁 ok=true 见 EVD-011）
+4. 密钥扫描：待推送全内容 ghp_/github_pat_/sk-[30+]/AKIA/私钥特征零命中（README sk-... 为文档占位示例）
+5. git tag v0.1.0；推送 main+v0.1.0：直连两次被连接重置 → 探测到本机代理 127.0.0.1:7897 → 经代理推送成功（exit 0，new branch main + new tag v0.1.0）；未保存 remote，credential.helper 显式禁用，token 未落盘
+6. POST /releases → Release v0.1.0 创建（Release 说明源自 CHANGELOG）
+核验（GET 实抓）：repo xushuodasd/zhixing | public | default-branch main | head=edac7a0 | tag v0.1.0
+链接：https://github.com/xushuodasd/zhixing | https://github.com/xushuodasd/zhixing/releases/tag/v0.1.0
+限制：token 为老板提供的经典令牌，发布完成后应立即吊销（已向老板建议）；治理档案（.ai-team/、docs/ai-team/）随仓库公开（发布形态决策：透明工程轨迹作为卖点，见 ADR-002/M04 交接）

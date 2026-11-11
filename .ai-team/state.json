@@ -5,7 +5,7 @@
     "root": "C:\\Users\\xushu\\Desktop\\test"
   },
   "stage": "S4",
-  "status": "awaiting-approval",
+  "status": "completed",
   "requirements": [
     {
       "id": "REQ-001",
@@ -38,8 +38,14 @@
       "scope": "M1 模块验收（REQ-001）通过；此后各模块验收由 Lead 按常设授权自主记录；推送/发布/部署等不可逆外部动作不在本授权内（M4 仍需单独批准）",
       "evidenceSha256": "2561c101479eeb315f0eebd6cd6ace1e38dd0704783885ad2e2b226a820a82ed",
       "artifacts": [
-        {"path": "README.md", "sha256": "24ebbbad616c4525b90fb4c5d6f504df89f3953ab4242675bdb2683c5c206a9f"},
-        {"path": ".ai-team/evidence/EVD-002-task-check-gate.txt", "sha256": "2561c101479eeb315f0eebd6cd6ace1e38dd0704783885ad2e2b226a820a82ed"}
+        {
+          "path": "README.md",
+          "sha256": "24ebbbad616c4525b90fb4c5d6f504df89f3953ab4242675bdb2683c5c206a9f"
+        },
+        {
+          "path": ".ai-team/evidence/EVD-002-task-check-gate.txt",
+          "sha256": "2561c101479eeb315f0eebd6cd6ace1e38dd0704783885ad2e2b226a820a82ed"
+        }
       ]
     },
     {
@@ -51,8 +57,14 @@
       "scope": "M2 模块验收（REQ-002）通过：Agent/Tool/Provider/Memory 核心与端到端循环；推送/发布不在本授权内",
       "evidenceSha256": "2f12caa9c5d6f3d4bc9be790ddfb2a21a89f06afed3316a05a96f85a4dbb2543",
       "artifacts": [
-        {"path": ".ai-team/evidence/EVD-006-main-verify-pytest.log", "sha256": "2f12caa9c5d6f3d4bc9be790ddfb2a21a89f06afed3316a05a96f85a4dbb2543"},
-        {"path": ".ai-team/evidence/EVD-007-quickstart-demo.txt", "sha256": "192df335a2751e8d21ffe3943d6d78acf42a0eb06a97c9f1acdd933ad22e3c85"}
+        {
+          "path": ".ai-team/evidence/EVD-006-main-verify-pytest.log",
+          "sha256": "2f12caa9c5d6f3d4bc9be790ddfb2a21a89f06afed3316a05a96f85a4dbb2543"
+        },
+        {
+          "path": ".ai-team/evidence/EVD-007-quickstart-demo.txt",
+          "sha256": "192df335a2751e8d21ffe3943d6d78acf42a0eb06a97c9f1acdd933ad22e3c85"
+        }
       ]
     },
     {
@@ -64,8 +76,29 @@
       "scope": "M3 模块验收（REQ-003）通过：双语门面/快速开始可复制运行/CONTRIBUTING/COC/CHANGELOG/发布前调研；推送/发布不在本授权内（M4 待用户明确批准）",
       "evidenceSha256": "d725a269efe48d6c578f41f38401150f8f742014308a4ac627ec074bc86625e6",
       "artifacts": [
-        {"path": "README.md", "sha256": "16ef0cad595539ca75e7f435092e92ed18684dedec8b5464e812e58989db89ff"},
-        {"path": ".ai-team/evidence/EVD-009-task-006-gate.txt", "sha256": "f7969873ff1aaeb39c1df4bc4a28133ad2df7e98f386280a10196e4aac580631"}
+        {
+          "path": "README.md",
+          "sha256": "16ef0cad595539ca75e7f435092e92ed18684dedec8b5464e812e58989db89ff"
+        },
+        {
+          "path": ".ai-team/evidence/EVD-009-task-006-gate.txt",
+          "sha256": "f7969873ff1aaeb39c1df4bc4a28133ad2df7e98f386280a10196e4aac580631"
+        }
+      ]
+    },
+    {
+      "stage": "S5",
+      "decision": "approved",
+      "source": "老板 2026-11-11 直接消息：\"你能连github自己建仓自己发吗\"并提供 GitHub token（ghp_…，已在证据中脱敏）——即明确委托建仓与发布；发布完成后已建议吊销该 token",
+      "approvedBy": "用户",
+      "at": "2026-11-11T14:18:58+08:00",
+      "scope": "M4/S5：在 xushuodasd 账号下创建公开仓库 zhixing、推送 main 与 v0.1.0 标签、创建 Release；PyPI 发布与其他远端操作不在本授权内",
+      "evidenceSha256": "7e685ee4c56402bc05e439396b021aca9a85366960b6fbc358fa3dff474eaf3e",
+      "artifacts": [
+        {
+          "path": ".ai-team/evidence/EVD-012-github-release.txt",
+          "sha256": "7e685ee4c56402bc05e439396b021aca9a85366960b6fbc358fa3dff474eaf3e"
+        }
       ]
     }
   ],
@@ -169,6 +202,26 @@
       "result": "passed",
       "exitCode": 0,
       "at": "2026-11-10T14:15:00+08:00"
+    },
+    {
+      "id": "EVD-012",
+      "stage": "S5",
+      "path": ".ai-team/evidence/EVD-012-github-release.txt",
+      "sha256": "7e685ee4c56402bc05e439396b021aca9a85366960b6fbc358fa3dff474eaf3e",
+      "command": "GitHub 建仓+推送+Release（GET 实抓核验通过，详见证据文件）",
+      "result": "passed",
+      "exitCode": 0,
+      "at": "2026-11-11T15:10:00+08:00"
+    },
+    {
+      "id": "EVD-011",
+      "stage": "S3",
+      "path": ".ai-team/evidence/EVD-011-task-007-gate.txt",
+      "sha256": "36a9e46fe8a16badbe8a48c24a500bf95dfb96eccb903ad3ff8ccef3efb7afef",
+      "command": "node scripts/task-check.mjs <root> .ai-team/tasks/TASK-007.json（严格模式，详见证据文件）",
+      "result": "passed",
+      "exitCode": 0,
+      "at": "2026-11-11T15:00:00+08:00"
     }
   ],
   "tasks": [
@@ -177,7 +230,8 @@
     ".ai-team/tasks/TASK-003.json",
     ".ai-team/tasks/TASK-004.json",
     ".ai-team/tasks/TASK-005.json",
-    ".ai-team/tasks/TASK-006.json"
+    ".ai-team/tasks/TASK-006.json",
+    ".ai-team/tasks/TASK-007.json"
   ],
   "risks": [
     {
@@ -205,6 +259,6 @@
       "mitigation": "已由用户常设授权消解（2026-11-09：验收类决定由 Lead 自主记录）；需求基线随各模块验收绑定，见 state.json approvals"
     }
   ],
-  "nextAction": "M1-M3 已验收闭环、真实端点联调通过（EVD-010，main=833870a+c59c3e7 档案）；M4（推送/发布）由老板 2026-11-10 14:10 明确暂停——恢复需其提供仓库地址并明确授权；恢复流程见 docs/ai-team/modules/M04-交接.md",
-  "updatedAt": "2026-11-10T14:20:00+08:00"
+  "nextAction": "项目 v0.1.0 已发布（https://github.com/xushuodasd/zhixing）；S5 维护阶段：后续迭代/PyPI 发布/Issue 处理需新任务卡与相应授权；老板应吊销已用的 GitHub token",
+  "updatedAt": "2026-11-11T15:12:00+08:00"
 }

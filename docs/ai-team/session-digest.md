@@ -4,21 +4,21 @@
 研发总监：只对话、决策、派工审查、集成验收；不亲自写代码或调试。
 
 ## 当前状态
-- **项目暂停在"随时可发布"状态**（老板 2026-11-10 14:10 选择：暂不发布、暂不授权推送）
-- M1/M2/M3 全部验收闭环（main=c59c3e7）；**真实 DeepSeek 端点联调通过**（EVD-010：模型自主调工具→中文最终答案，exit 0）
-- 全部档案入库；goal 已随老板指令暂停
-
-## 等老板（恢复发布需要）
-- ① 仓库地址（推荐新组织 zhixing-framework；GitHub 用户名 zhixing 被占）
-- ② 明确授权推送（+是否 Release）
-- ③ 老板在会话中给过一把 API key——已建议其轮换（联调只用环境变量瞬时注入，未落盘）
+- **项目已发布上线**：https://github.com/xushuodasd/zhixing（public，main=edac7a0，tag v0.1.0，Release 已创建，EVD-012）
+- M1-M4 全部闭环；59 测试全绿 + 真实 DeepSeek 端点联调通过（EVD-010）+ 发布核验（EVD-012）
+- state.json status=completed；goal 已完成关闭
 
 ## 关键决策（下轮不要重做）
-- 名称：PyPI zhixing 未占；GitHub 需自建组织；同名 9★ 移动端框架存在 → 首屏放包名+定位词
-- 发布形态待老板拍板：治理档案是否随公共仓库公开（ADR-002 遗留）
-- 待办小修：README/CONTRIBUTING clone 地址占位（2 处）、CONTRIBUTING 示例标注"简化"
+- 发布形态：治理档案随仓库公开（透明工程轨迹作为卖点）；首屏放 PyPI 包名+定位词（应对 9★ 同名移动端框架）
+- 推送经本机代理 127.0.0.1:7897（直连被重置）；remote 未保存、credential.helper 禁用、token 未落盘
+- **老板应已吊销发布用 GitHub token**（用后即弃）
 
-## 恢复方式
-- 粘 docs/ai-team/modules/M04-交接.md 第 7 节开场白（填入仓库地址与授权）
+## 待办候选（需新授权/任务卡）
+- PyPI 发布（pip install zhixing 可行性已核验）；Issue/PR 维护；v0.1.1+ 迭代；流式输出/多线程 Memory（Roadmap）
+- 小修欠账：CONTRIBUTING"简化"标注已补；无其他
 
-> 更新于：2026-11-10 14:20；版本：M4-暂停
+## 教训（记录在案）
+- EVD-011 哈希曾误写未实算值→已纠正（36a9e46f…）；哈希必须当场实算
+- PowerShell→Python 传参丢引号：复杂脚本一律走临时文件
+
+> 更新于：2026-11-11 15:15；版本：S5-发布完成
