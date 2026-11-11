@@ -18,6 +18,6 @@
 
 ### Known Limitations
 
-- 真实模型端点联调未执行：`OpenAICompatProvider` 的请求构造、序列化与错误路径已通过 `httpx.MockTransport` 离线验证，尚未对接真实 API；
+- 真实模型端点已联调（2026-11-10 单次真实调用通过：模型自主调用工具 → 中文最终答案，证据 EVD-010）；
 - 无流式输出：模型补全为一次性返回；
 - 内置 `InMemoryMemory` 为单线程内存实现：无持久化，无并发安全保障。

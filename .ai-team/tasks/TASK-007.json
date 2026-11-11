@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "TASK-007",
+  "name": "M4 发布前小修：替换 clone 地址占位 + CONTRIBUTING 示例标注",
+  "owner": "docs-dev",
+  "baseCommit": "67fbe6979e348d0f147db0ef7c53f5dd840447c2",
+  "branch": "feat/TASK-007-release-polish",
+  "allowedPaths": [
+    "README.md",
+    "CONTRIBUTING.md",
+    "CHANGELOG.md",
+    "docs/",
+    ".ai-team/tasks/TASK-007.json",
+    ".ai-team/evidence/"
+  ],
+  "requirements": [
+    "REQ-003",
+    "REQ-004"
+  ],
+  "documentation": {
+    "updatedPaths": [
+      "README.md",
+      "CONTRIBUTING.md",
+    "CHANGELOG.md"
+    ],
+    "noImpactReason": ""
+  },
+  "checks": [
+    {
+      "name": "pytest 全量单测",
+      "command": "%TEMP% venv: python -m pytest -q -p no:cacheprovider",
+      "result": "passed",
+      "exitCode": 0,
+      "evidencePath": ".ai-team/evidence/TASK-007-pytest.log",
+      "evidenceSha256": "85aabe27b3c4b2ef693597656d11c36d81e047db81eb181b56fe48a12ea1e1c3"
+    },
+    {
+      "name": "ruff 静态检查",
+      "command": "%TEMP% venv: ruff check . --no-cache",
+      "result": "passed",
+      "exitCode": 0,
+      "evidencePath": ".ai-team/evidence/TASK-007-ruff.log",
+      "evidenceSha256": "e0af5e08a7ef46da5421b01a4ef0562a8b8873ea00d36522b4c928b565eef4dd"
+    }
+  ],
+  "review": {
+    "reviewer": "lead",
+    "decision": "changes-requested",
+    "source": "占位：任务创建时尚未审查；完成后由 lead（非作者，R0 文档级）审查更新"
+  }
+}

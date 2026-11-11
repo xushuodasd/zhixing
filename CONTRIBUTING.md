@@ -8,7 +8,7 @@
 - Git
 
 ```bash
-git clone <仓库地址>
+git clone https://github.com/xushuodasd/zhixing
 cd zhixing
 
 python -m venv .venv
@@ -54,7 +54,7 @@ Risks: <已知风险，或 none>
 
 type 取值：`feat` / `fix` / `docs` / `refactor` / `test` / `chore`。
 
-真实提交示例：
+提交示例（格式简化，非逐字引用）：
 
 ```text
 feat: add agent loop with memory and end-to-end tests

@@ -42,7 +42,7 @@ ZhiXing（知行）取意"知行合一"：模型负责**知**（理解、规划�
 
 ```bash
 # 1. 克隆仓库
-git clone <仓库地址>
+git clone https://github.com/xushuodasd/zhixing
 cd zhixing
 
 # 2. 创建虚拟环境（需要 Python >= 3.11）
