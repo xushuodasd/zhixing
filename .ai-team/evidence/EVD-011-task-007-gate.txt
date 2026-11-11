@@ -1,0 +1,10 @@
+EVD-011 | stage S3/S4 集成门禁 | 2026-11-11 15:05+08:00 | 执行者：lead
+任务：TASK-007（M4 发布前小修：clone 地址替换 + CONTRIBUTING 示例标注 + CHANGELOG 联调口径更新）
+命令：node scripts/task-check.mjs <root> .ai-team/tasks/TASK-007.json（严格模式，exit 0, ok=true）
+branch：feat/TASK-007-release-polish；head=20b31d9d97828aeba4f79954873f20e7c36a30a5
+recordSha256：896e79601844763d24bb7b16b537d507da1988fbf27a96c2a74e24ad368ccd85
+candidateSha256：d98cf181f4f7e30559bf87207c195e72498b89b2d3c908abdb33cf2895525ea1
+commits：a3837fe、20b31d9（作者 docs-dev）
+独立审查：lead（非作者，R0 文档级）approved——diff 恰好等于授权三处、README:124 声明与 EVD-010/CHANGELOG 口径一致（保留"单次"限定）、链接核验有效
+证据绑定：TASK-007-pytest.log=e1843354…e1aeba（59 passed）/ TASK-007-ruff.log=e0af5e08…eef4dd
+透明记录：契约哈希绑定过程出现两次 lead 操作失误（字符串手术写坏 JSON；审查文本更新后未重新快照即沿用旧哈希），均以 Python JSON 通道修复并按正确顺序（定稿→快照→绑定）重做，最终严格门禁 ok=true；教训已纳入 Lead 工作方式

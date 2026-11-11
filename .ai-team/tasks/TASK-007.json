@@ -21,7 +21,7 @@
     "updatedPaths": [
       "README.md",
       "CONTRIBUTING.md",
-    "CHANGELOG.md"
+      "CHANGELOG.md"
     ],
     "noImpactReason": ""
   },
@@ -32,7 +32,8 @@
       "result": "passed",
       "exitCode": 0,
       "evidencePath": ".ai-team/evidence/TASK-007-pytest.log",
-      "evidenceSha256": "e18433546f7dac7d94634c30ba9f776f5af9ba7210b6f3a0e61c4bfddde1aeba"
+      "evidenceSha256": "e18433546f7dac7d94634c30ba9f776f5af9ba7210b6f3a0e61c4bfddde1aeba",
+      "candidateSha256": "d98cf181f4f7e30559bf87207c195e72498b89b2d3c908abdb33cf2895525ea1"
     },
     {
       "name": "ruff 静态检查",
@@ -40,12 +41,15 @@
       "result": "passed",
       "exitCode": 0,
       "evidencePath": ".ai-team/evidence/TASK-007-ruff.log",
-      "evidenceSha256": "e0af5e08a7ef46da5421b01a4ef0562a8b8873ea00d36522b4c928b565eef4dd"
+      "evidenceSha256": "e0af5e08a7ef46da5421b01a4ef0562a8b8873ea00d36522b4c928b565eef4dd",
+      "candidateSha256": "d98cf181f4f7e30559bf87207c195e72498b89b2d3c908abdb33cf2895525ea1"
     }
   ],
   "review": {
     "reviewer": "lead",
-    "decision": "changes-requested",
-    "source": "占位：任务创建时尚未审查；完成后由 lead（非作者，R0 文档级）审查更新"
-  }
+    "decision": "approved",
+    "source": "Lead 独立审查（非作者，R0 文档级，2026-11-11）：diff 恰好等于授权三处（clone 地址×2、CONTRIBUTING 示例标注、CHANGELOG 联调口径），零夹带；README:124 声明与 EVD-010/CHANGELOG 口径一致且保留单次限定；链接核验有效；证据小写哈希回写正确。批准该候选。",
+    "candidateSha256": "d98cf181f4f7e30559bf87207c195e72498b89b2d3c908abdb33cf2895525ea1"
+  },
+  "recordSha256": "896e79601844763d24bb7b16b537d507da1988fbf27a96c2a74e24ad368ccd85"
 }
