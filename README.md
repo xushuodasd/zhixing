@@ -121,7 +121,7 @@ print(result.answer)
 
 所有失败（网络错误、超时、非 2xx、响应格式异常）都会折算为 `ProviderError` 抛出，错误信息只含状态码与响应摘要，不包含 API Key。
 
-> 诚实声明：`OpenAICompatProvider` 的请求构造、消息与工具调用序列化、错误路径已通过 `httpx.MockTransport` 离线验证；**真实模型端点联调尚未执行**，已知限制见 [CHANGELOG](CHANGELOG.md)。
+> 诚实声明：`OpenAICompatProvider` 的请求构造、消息与工具调用序列化、错误路径已通过 `httpx.MockTransport` 离线验证；**真实模型端点已于 2026-11-10 完成单次联调验证**（模型自主调用工具 → 中文最终答案，见 [CHANGELOG](CHANGELOG.md) 已知限制更新）。
 
 ## 规划中（Roadmap）
 

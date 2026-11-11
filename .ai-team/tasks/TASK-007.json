@@ -32,7 +32,7 @@
       "result": "passed",
       "exitCode": 0,
       "evidencePath": ".ai-team/evidence/TASK-007-pytest.log",
-      "evidenceSha256": "85aabe27b3c4b2ef693597656d11c36d81e047db81eb181b56fe48a12ea1e1c3"
+      "evidenceSha256": "e18433546f7dac7d94634c30ba9f776f5af9ba7210b6f3a0e61c4bfddde1aeba"
     },
     {
       "name": "ruff 静态检查",
